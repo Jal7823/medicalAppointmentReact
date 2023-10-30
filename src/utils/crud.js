@@ -13,7 +13,7 @@ export const getAllData = async (endpoint) => {
 
 export const getOneData = async (endpoint,id) => {
   try {
-    const data = await axios.get(`${urlBase}/${endpoint}/${id}`);
+    const data = await axios.get(`${urlBase}/${endpoint}/${id}/`);
     return data;
   } catch (e) {
     console.log(e);
