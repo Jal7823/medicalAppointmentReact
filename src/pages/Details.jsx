@@ -47,14 +47,17 @@ function Details() {
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
               {object.descriptions}
             </p>
-            <div className="text-3xl font-bold text-white">Especialidades de la Sede</div>
-            <ul className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-             {object.specialty.map((el)=>(
-              <ul className="flex" key={el.id}>
-                <li> - {el.name}</li> <i className={`${el.icon} ml-2`}></i>
+            <div className="text-3xl font-bold text-white mt-6">
+              Especialidades de la Sede
+            </div>
+            {object.specialty.map((el) => (
+              <ul className="flex mt-4" key={el.id}>
+                <li className="text-white">
+                  {" "}
+                  <i className={`${el.icon} ml-2 text-red-700`}></i> {el.name}
+                </li>
               </ul>
-             ))}
-            </ul>
+            ))}
             <div className="flex justify-around">
               <NavLink
                 to="/hospital"

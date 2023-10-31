@@ -13,7 +13,7 @@ function Specialty() {
   }, []);
 
   return (
-    <div className="container flex justify-center m-6">
+    <div className="container flex justify-center ">
       <table className="min-w-34">
         <thead>
           <tr>
