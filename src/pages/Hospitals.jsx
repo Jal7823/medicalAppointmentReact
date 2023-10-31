@@ -22,11 +22,11 @@ function Hospitals() {
 
   return (
     <>
-      <div className="flex justify-around">
+      <div className="flex flex-wrap mt-4 justify-around">
         {BranchOffice.map((el) => (
           <div
             key={el.id}
-            className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+            className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-4"
           >
             <NavLink to={`/details/${el.id}`}>
               <img className="rounded-t-lg" src={el.image} alt={el.name} />

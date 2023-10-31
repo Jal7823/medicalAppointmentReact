@@ -23,12 +23,12 @@ function Details() {
   }, [id]);
 
   return (
-    <div className="container mx-auto mt-4">
+    <div className="container mx-auto m-4">
       {object ? (
-        <div className="w-100vh bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div className="w-100vh bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 m-4 p-4">
           <NavLink to="#">
             <img
-              className="rounded-t-lg mx-auto bg-slate-100 m-4 w-100 object-cover"
+              className="rounded-t-lg mx-auto bg-slate-100 m-4 w-100 object-cover rounded"
               src='/logo.png'
               alt={object.name}
             />
