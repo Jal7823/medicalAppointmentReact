@@ -4,9 +4,7 @@ import { getAllData } from "../utils/crud";
 //library
 import { useEffect } from "react";
 import { useState } from "react";
-import {NavLink} from 'react-router-dom'
-
-
+import { NavLink } from "react-router-dom";
 
 function Hospitals() {
   const [BranchOffice, setBranchOffice] = useState([]);
@@ -15,7 +13,6 @@ function Hospitals() {
     const fetchData = async () => {
       const res = await getAllData("branchOffice");
       setBranchOffice(res.data);
-      console.log(res);
     };
     fetchData();
   }, []);

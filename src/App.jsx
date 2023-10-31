@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import Index from "./pages/Index";
 import Hospitals from "./pages/Hospitals";
 import Details from "./pages/Details";
+import Specialty from "./pages/Specialty";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<Index />} />
           <Route path="/hospital" element={<Hospitals />} />
           <Route path="/details/:id" element={<Details />} />
+          <Route path="/specialty" element={<Specialty />} />
         </Routes>
       </Router>
     </>

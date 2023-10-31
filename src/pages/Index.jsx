@@ -4,10 +4,10 @@ import Specialties from "../components/Specialties"
 function Index() {
   return (
     <div>
-      <div className="flex flex-wrap justify-around">
-        <InfoBox title='ORIENTACIÓN MÉDICA TELEFÓNICA' phone='721636821' msg='aca va el msj' />
-        <InfoBox title='URGENCIAS y EMERGENCIAS' phone='721636821' msg='aca va el msj' />
-        <InfoBox title='ATENCIÓN DE VENTAS' phone='721636821' msg='aca va el msj' />
+      <div className="flex flex-wrap justify-around mt-2">
+        <InfoBox  title='ORIENTACIÓN MÉDICA TELEFÓNICA' phone='721636821' msg='aca va el msj' />
+        <InfoBox  title='URGENCIAS y EMERGENCIAS' phone='721636821' msg='aca va el msj' />
+        <InfoBox  title='ATENCIÓN DE VENTAS' phone='721636821' msg='aca va el msj' />
       </div>
       <div className="container-fluid">
       <div className="flex flex-wrap justify-around m-4">
