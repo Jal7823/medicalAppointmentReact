@@ -1,9 +1,15 @@
 name: Build and Deploy Vite App
 
 on:
+  pull_request: 
+    branches:
+      - master
+
   push:
     branches:
       - test
+
+      
 
 jobs:
   build:
