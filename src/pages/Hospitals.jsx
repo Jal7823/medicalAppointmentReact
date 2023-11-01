@@ -1,51 +1,69 @@
-//utils
-import { getAllData } from "../utils/crud";
-
-//library
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { getAllData } from "../utils/crud";
 
 function Hospitals() {
   const [BranchOffice, setBranchOffice] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await getAllData("branchOffice");
-      setBranchOffice(res.data);
+      try {
+        const res = await getAllData("branchOffice");
+        setBranchOffice(res.data);
+        setLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+      }
     };
     fetchData();
   }, []);
+  
+
 
   return (
     <>
       <div className="flex flex-wrap mt-4 justify-around">
-        {BranchOffice.map((el) => (
-          <div
-            key={el.id}
-            className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-4"
-          >
-            <NavLink to={`/details/${el.id}`}>
-              <img className="rounded-t-lg" src={el.image} alt={el.name} />
-            </NavLink>
-            <div className="p-5">
-              <NavLink to={`/details/${el.id}`}>
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  {el.name}
-                </h5>
-              </NavLink>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                {el.descriptions}
-              </p>
-              <NavLink
-                to={`/details/${el.id}`}
-                className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              >
-                <i className="fa fa-eye textwhite text2xl"></i>
-              </NavLink>
-            </div>
+        {loading ? (
+          <button type="button" className="bg-indigo-500 animate-pulse" disabled>
+            <svg className="animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
+            </svg>
+            Cargando...
+          </button>
+        ) : error ? (
+          <div className=" bg-red-200  p-8 rounded font-bold"><i className="fa fa-times bg-red-700 text-white p-2 rounded-full text-[10px]"></i>  Verificar que el servidor esté funcionando correctamente,ya que no conecta,el servidores reporta:
+          <p className="ml-6 p-4 animate-pulse ">Cannot read properties of undefined data</p>
           </div>
-        ))}
+        ) : (
+          BranchOffice.map((el) => (
+            <div
+              key={el.id}
+              className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-4"
+            >
+              <NavLink to={`/details/${el.id}`}>
+                <img className="rounded-t-lg" src={el.image} alt={el.name} />
+              </NavLink>
+              <div className="p-5">
+                <NavLink to={`/details/${el.id}`}>
+                  <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    {el.name}
+                  </h5>
+                </NavLink>
+                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                  {el.descriptions}
+                </p>
+                <NavLink
+                  to={`/details/${el.id}`}
+                  className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover-bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                >
+                  <i className="fa fa-eye textwhite text2xl"></i>
+                </NavLink>
+              </div>
+            </div>
+          ))
+        )}
       </div>
     </>
   );

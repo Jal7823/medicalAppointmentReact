@@ -7,7 +7,7 @@ export const getAllData = async (endpoint) => {
     const data = await axios.get(`${urlBase}/${endpoint}/`);
     return data;
   } catch (e) {
-    console.log(e);
+    console.error(`Error in request from ⚠ => ${e}`);
   }
 };
 
@@ -16,7 +16,7 @@ export const getOneData = async (endpoint,id) => {
     const data = await axios.get(`${urlBase}/${endpoint}/${id}/`);
     return data;
   } catch (e) {
-    console.log(e);
+    console.error(`Error in request from ⚠ => ${e}`);
   }
 };
 
