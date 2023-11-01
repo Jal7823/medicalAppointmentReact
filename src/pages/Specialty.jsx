@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { getAllData } from "../utils/crud";
+import Errors from "../components/Errors";
+import Loading from "../components/Loading";
+import Title from "../components/Title";
 
 function Specialty() {
   const [Specialty, setSpecialty] = useState([]);
@@ -23,30 +26,24 @@ function Specialty() {
   return (
     <>
       {loading ? (
-        <div></div>
+        <Loading />
       ) : error ? (
-        <div></div>
+        <Errors />
       ) : (
-        <div className="container flex justify-center ">
-          <table className="min-w-34">
-            <thead>
-              <tr>
-                <th className="px-4 py-2">Especialidad</th>
-                <th className="px-4 py-2">Icon</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Specialty.map((el) => (
-                <tr key={el.id}>
-                  <td className="border px-4 py-2">{el.name}</td>
-                  <td className="border px-4 py-2 text-center text-2xl">
-                    <i className={`${el.icon} text-center text-red-700`}></i>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <>
+        <Title content='Lista de especialidades'/>
+        <div className="container flex justify-center place-content-center mt-8 mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 grid-row-auto">
+          {Specialty.map((el) => (
+            <div className="flex" key={el.id}>
+              <i className={`${el.icon} text-red-700`}></i>
+              <p className="ml-2">{el.name}</p>
+            </div>
+          ))}
         </div>
+      </div>
+        </>
+      
       )}
     </>
   );

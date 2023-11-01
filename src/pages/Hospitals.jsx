@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { getAllData } from "../utils/crud";
+import Loading from "../components/Loading";
+import Errors from "../components/Errors";
+import Title from '../components/Title'
 
 function Hospitals() {
   const [BranchOffice, setBranchOffice] = useState([]);
@@ -20,22 +23,15 @@ function Hospitals() {
     };
     fetchData();
   }, []);
-  
-
 
   return (
     <>
+      <Title content='Centros Medicos' /> {/* Mueve el componente Title fuera del bucle */}
       <div className="flex flex-wrap mt-4 justify-around">
         {loading ? (
-          <button type="button" className="bg-indigo-500 animate-pulse" disabled>
-            <svg className="animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
-            </svg>
-            Cargando...
-          </button>
+          <Loading />
         ) : error ? (
-          <div className=" bg-red-200  p-8 rounded font-bold"><i className="fa fa-times bg-red-700 text-white p-2 rounded-full text-[10px]"></i>  Verificar que el servidor esté funcionando correctamente,ya que no conecta,el servidores reporta:
-          <p className="ml-6 p-4 animate-pulse ">Cannot read properties of undefined data</p>
-          </div>
+          <Errors />
         ) : (
           BranchOffice.map((el) => (
             <div
