@@ -36,12 +36,12 @@ function Hospitals() {
           BranchOffice.map((el) => (
             <div
               key={el.id}
-              className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-4"
+              className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:border-gray-700 mt-4 "
             >
               <NavLink to={`/details/${el.id}`}>
-                <img className="rounded-t-lg" src={el.image} alt={el.name} />
+                <img className="rounded-t-lg max-w-300 object-contain max-h-300" src={el.image} alt={el.name} />
               </NavLink>
-              <div className="p-5">
+              <div className="p-5 dark:bg-gray-800">
                 <NavLink to={`/details/${el.id}`}>
                   <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                     {el.name}

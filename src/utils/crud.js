@@ -11,7 +11,7 @@ export const getAllData = async (endpoint) => {
   }
 };
 
-export const getOneData = async (endpoint,id) => {
+export const getOneData = async (endpoint, id) => {
   try {
     const data = await axios.get(`${urlBase}/${endpoint}/${id}/`);
     return data;
@@ -20,5 +20,13 @@ export const getOneData = async (endpoint,id) => {
   }
 };
 
+export const createItem = async (endpoint, data) => {
 
-
+  //you need send the endpoint and data
+  try {
+    const newItem = await axios.post(`${urlBase}/${endpoint}/`, data);
+    return newItem;
+  } catch (e) {
+    console.error(`Error in request from ⚠ => ${e}`);
+  }
+};

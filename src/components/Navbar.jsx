@@ -24,7 +24,7 @@ function Navbar() {
       <div className="hidden md:block dark:bg-gray-800 text-white">
         <div className="flex justify-between align-middle justify-items-center align-middle">
           <div className="p-4 bg-slate-50 rounded-full m-2">
-          <img className="w-[60px]" src="logo.png" alt="" />
+          <img className="w-[60px] animate-pulse" src="logo.png" alt="" />
           </div>
           <ul className="flex justify-center mr-2 justify-items-center items-center">
             <li className="ml-2">
@@ -34,10 +34,10 @@ function Navbar() {
               <NavLink to="/hospital">🏥 hospital</NavLink>
             </li>
             <li className="ml-2">
-              <NavLink to="/specialty">🔨 specialty</NavLink>
+              <NavLink to="/login">👨 login</NavLink>
             </li>
             <li className="ml-2">
-              <NavLink to="/login">👨 login</NavLink>
+              <NavLink to="/appointment">📰  Pedir Cita</NavLink>
             </li>
           </ul>
         </div>
@@ -63,11 +63,11 @@ function Navbar() {
             <NavLink to="/hospital">🏥 hospital</NavLink>
           </li>
           <li className="ml-2 w-100 m-2 text-end ">
-            <NavLink to="/specialty">🔨 specialty</NavLink>
-          </li>
-          <li className="ml-2 w-100 m-2 text-end ">
             <NavLink to="/login">👨 login</NavLink>
           </li>
+          <li className="ml-2">
+              <NavLink to="/appointment">📰  Pedir Cita</NavLink>
+            </li>
         </ul>
         </div>
       </div>
