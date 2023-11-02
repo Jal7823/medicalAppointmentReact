@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Title from "../components/Title";
-import { getAllData } from "../utils/crud";
+import { getAllData,createItem } from "../utils/crud";
 import { useForm } from "react-hook-form";
 
 function Appointments() {
@@ -9,6 +9,8 @@ function Appointments() {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = handleSubmit((data) => {
+    // const res = createItem('appointments',data)
+    // console.log(res);
     console.log(data);
   });
 
