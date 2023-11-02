@@ -10,6 +10,7 @@ import Hospitals from "./pages/Hospitals";
 import Details from "./pages/Details";
 import Appointments from "./pages/Appointments";
 import Login from "./pages/auth/Login";
+import Logout from "./pages/auth/Logout";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="/details/:id" element={<Details />} />
           <Route path="/appointment" element={<Appointments />}/>
           <Route path="/login" element={<Login />}/>
+          <Route path="/logout" element={<Logout />}/>
         </Routes>
       </Router>
     </>
