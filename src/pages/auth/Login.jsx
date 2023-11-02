@@ -1,33 +1,57 @@
 import Title from "../../components/Title";
 import { useForm } from "react-hook-form";
-import { createItem } from "../../utils/crud";
-import {useNavigate} from 'react-router-dom'
-
+import { createItem, getOneData } from "../../utils/crud";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../utils/slices";
+import decodeJwtToken from '../../utils/decodeTokens'
 
 function Login() {
-    
-    const navigate = useNavigate();
-    const { register, handleSubmit } = useForm();
-    const onSubmit = handleSubmit(async (data) => {
-        const getAccess = await  createItem('token',data)
 
-        if (getAccess.status != 200) {
-            console.log('something was wrong');
-        }else {
-            localStorage.setItem('token',getAccess.data.access)
-            console.log('login ok');
-            navigate('/')
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-        }
+  const { register, handleSubmit } = useForm();
+  const onSubmit = handleSubmit(async (data) => {
+    const getAccess = await createItem("token", data);
+  
+    if (getAccess.status !== 200) {
+      console.log("something was wrong");
+    } else {
+      localStorage.setItem("token", getAccess.data.access);
+      const token = localStorage.getItem('token');
+      const payload = decodeJwtToken(token);
+      console.log(payload.user_id);
+  
+      try {
+        const currentUser = await getOneData('users/users', payload.user_id);
+        console.log("Current User:", currentUser.data);
         
-      });
+        const user = {
+          'email':currentUser.data.email,
+          'username': currentUser.data.username,
+          'token': localStorage.getItem('token')
+        }
+
+        dispatch(setUser(user))
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+  
+      console.log("login ok");
+      navigate("/");
+    }
+  });
 
   return (
     <div>
       <Title content="Login" />
-      <div  className="flex justify-center mt-8">
+      <div className="flex justify-center mt-8">
         <div className="w-full max-w-xs">
-          <form onSubmit={onSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+          <form
+            onSubmit={onSubmit}
+            className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+          >
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
@@ -39,7 +63,7 @@ function Login() {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="username"
                 type="text"
-                {...register('username')}
+                {...register("username")}
                 placeholder="Username"
               />
             </div>
@@ -55,7 +79,7 @@ function Login() {
                 id="password"
                 type="password"
                 placeholder="******************"
-                {...register('password')}
+                {...register("password")}
               />
               <p className="text-red-500 text-xs italic">
                 Por favor introduzca una contraseña
