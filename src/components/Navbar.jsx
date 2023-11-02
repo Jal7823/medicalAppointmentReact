@@ -1,9 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import {useSelector} from 'react-redux'
 
 function Navbar() {
   const navigate = useNavigate();
+  const currentUser = useSelector((state) => state.user);
 
   const [toggleMenu, settoggelMenu] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -53,11 +55,18 @@ function Navbar() {
               <NavLink to="/hospital">🏥 hospital</NavLink>
             </li>
             {isLoggedIn ? (
+              <div className="flex">
+                <li className="ml-2">
+                <NavLink onClick={handleLogout} to="/logout">
+                  @{currentUser.username}
+                </NavLink>
+              </li>
               <li className="ml-2">
                 <NavLink onClick={handleLogout} to="/logout">
                   👨 Logout
                 </NavLink>
               </li>
+              </div>
             ) : (
               <li className="ml-2">
                 <NavLink to="/login">👨 Login</NavLink>
@@ -90,11 +99,18 @@ function Navbar() {
               <NavLink to="/hospital">🏥 hospital</NavLink>
             </li>
             {isLoggedIn ? (
+              <div className="flex">
+                <li className="ml-2">
+                <NavLink onClick={handleLogout} to="/logout">
+                  @{currentUser.username}
+                </NavLink>
+              </li>
               <li className="ml-2">
                 <NavLink onClick={handleLogout} to="/logout">
                   👨 Logout
                 </NavLink>
               </li>
+              </div>
             ) : (
               <li className="ml-2">
                 <NavLink to="/login">👨 Login</NavLink>

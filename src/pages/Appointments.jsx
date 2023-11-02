@@ -2,24 +2,46 @@ import { useState, useEffect } from "react";
 import Title from "../components/Title";
 import { getAllData,createItem } from "../utils/crud";
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
 
 function Appointments() {
+
+  const user = useSelector((state)=>state.user)
+  
   const [BranchOffices, setBranchOffices] = useState([]);
   const [selectedBranch, setSelectedBranch] = useState(""); // Estado para la sucursal seleccionada
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = handleSubmit((data) => {
-    // const res = createItem('appointments',data)
-    // console.log(res);
-    console.log(data);
-  });
+  const onSubmit = handleSubmit(async (data) => {
+    const dataToAppointments = {
+        "name": `${user.username}`,
+        "last_name": `${user.last_name}`,
+        "dni": 1,
+        "specialty": 1,
+        "date": data.date,
+        "user": 1,
+        "branchOffices": 1
+    };
 
+    console.log(dataToAppointments);
+
+    const token = localStorage.getItem('token');
+
+    try {
+        const res = await createItem('appointments', dataToAppointments, token);
+        console.log(await res);
+        // Aquí puedes agregar código para manejar la respuesta exitosa, si es necesario.
+    } catch (error) {
+        console.error(error);
+        // Aquí puedes manejar cualquier error que ocurra durante la solicitud.
+    }
+});
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await getAllData("branchOffice");
         setBranchOffices(res.data);
-        console.log(res.data);
       } catch (e) {
         console.log(e);
       }

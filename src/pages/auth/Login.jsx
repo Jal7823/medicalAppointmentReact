@@ -30,7 +30,11 @@ function Login() {
         const user = {
           'email':currentUser.data.email,
           'username': currentUser.data.username,
-          'token': localStorage.getItem('token')
+          'token': localStorage.getItem('token'),
+          'dni':currentUser.data.dni,
+          'last_name':currentUser.data.last_name,
+          'name':currentUser.data.name,
+
         }
 
         dispatch(setUser(user))

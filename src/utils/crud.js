@@ -20,11 +20,15 @@ export const getOneData = async (endpoint, id) => {
   }
 };
 
-export const createItem = async (endpoint, data) => {
+export const createItem = async (endpoint, data,token) => {
 
   //you need send the endpoint and data
   try {
-    const newItem = await axios.post(`${urlBase}/${endpoint}/`, data);
+    const newItem = await axios.post(`${urlBase}/${endpoint}/`, data,{
+      headers:{
+        Authorization:`Bearer ${token}`
+      }
+    });
     return newItem;
   } catch (e) {
     console.error(`Error in request from ⚠ => ${e}`);
