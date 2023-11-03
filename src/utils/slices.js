@@ -6,7 +6,8 @@ const initialState = {
   token: "",
   dni:'',
   last_name:'',
-  name:''
+  name:'',
+  image:''
 }
 
 export const userSlice = createSlice({
@@ -20,6 +21,7 @@ export const userSlice = createSlice({
       state.dni = action.payload.dni;
       state.last_name = action.payload.last_name;
       state.name = action.payload.name;
+      state.image = action.payload.image;
     },
     unsetUser: (state) => {
       state.email = "";
@@ -28,6 +30,7 @@ export const userSlice = createSlice({
       state.dni='',
       state.last_name='',
       state.name=''
+      state.image=''
     }
   }
 })

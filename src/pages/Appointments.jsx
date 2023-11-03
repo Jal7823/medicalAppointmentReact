@@ -23,7 +23,6 @@ function Appointments() {
         "branchOffices": 1
     };
 
-    console.log(dataToAppointments);
 
     const token = localStorage.getItem('token');
 

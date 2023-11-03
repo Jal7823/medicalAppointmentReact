@@ -1,6 +1,7 @@
 // libraries
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
+
 //components
 import Navbar from "./components/Navbar";
 

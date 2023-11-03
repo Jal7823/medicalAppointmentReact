@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../../utils/slices";
 import decodeJwtToken from '../../utils/decodeTokens'
 
+
 function Login() {
 
   const navigate = useNavigate();
@@ -21,11 +22,9 @@ function Login() {
       localStorage.setItem("token", getAccess.data.access);
       const token = localStorage.getItem('token');
       const payload = decodeJwtToken(token);
-      console.log(payload.user_id);
   
       try {
         const currentUser = await getOneData('users/users', payload.user_id);
-        console.log("Current User:", currentUser.data);
         
         const user = {
           'email':currentUser.data.email,
@@ -34,8 +33,11 @@ function Login() {
           'dni':currentUser.data.dni,
           'last_name':currentUser.data.last_name,
           'name':currentUser.data.name,
+          'image':currentUser.data.image,
 
         }
+        const userJSON = JSON.stringify(user);
+        localStorage.setItem('user', userJSON);
 
         dispatch(setUser(user))
       } catch (error) {
