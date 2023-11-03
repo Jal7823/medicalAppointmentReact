@@ -54,7 +54,7 @@ function Navbar() {
               <NavLink to="/">Inicio</NavLink>
             </li>
             <li className="ml-2">
-              <NavLink to="/hospital">Hospital</NavLink>
+              <NavLink to="/hospital">Hospitales</NavLink>
             </li>
             <li className="ml-2 w-100 text-end">
               <NavLink to="/appointment">Citas</NavLink>
@@ -104,7 +104,7 @@ function Navbar() {
               <NavLink to="/">Inicio</NavLink>
             </li>
             <li className="ml-2 w-100 m-2 text-end  mt-4">
-              <NavLink to="/hospital">Hospital</NavLink>
+              <NavLink to="/hospital">Hospitales</NavLink>
             </li>
             <li className="ml-2  w-100 text-end mt-4">
               <NavLink to="/appointment">Citas</NavLink>

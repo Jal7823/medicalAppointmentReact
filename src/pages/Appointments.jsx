@@ -1,41 +1,39 @@
 import { useState, useEffect } from "react";
 import Title from "../components/Title";
-import { getAllData,createItem } from "../utils/crud";
+import { getAllData, createItem } from "../utils/crud";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 
 function Appointments() {
+  const user = useSelector((state) => state.user);
 
-  const user = useSelector((state)=>state.user)
-  
   const [BranchOffices, setBranchOffices] = useState([]);
   const [selectedBranch, setSelectedBranch] = useState(""); // Estado para la sucursal seleccionada
   const { register, handleSubmit } = useForm();
 
   const onSubmit = handleSubmit(async (data) => {
     const dataToAppointments = {
-        "name": `${user.username}`,
-        "last_name": `${user.last_name}`,
-        "dni": 1,
-        "specialty": 1,
-        "date": data.date,
-        "user": 1,
-        "branchOffices": 1
+      name: `${user.username}`,
+      last_name: `${user.last_name}`,
+      dni: 1,
+      specialty: 1,
+      date: data.date,
+      user: 1,
+      branchOffices: 1,
     };
 
-
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
 
     try {
-        const res = await createItem('appointments', dataToAppointments, token);
-        console.log(await res);
-        // Aquí puedes agregar código para manejar la respuesta exitosa, si es necesario.
+      const res = await createItem("appointments", dataToAppointments, token);
+      console.log(await res);
+      // Aquí puedes agregar código para manejar la respuesta exitosa, si es necesario.
     } catch (error) {
-        console.error(error);
-        // Aquí puedes manejar cualquier error que ocurra durante la solicitud.
+      console.error(error);
+      // Aquí puedes manejar cualquier error que ocurra durante la solicitud.
     }
-});
-  
+  });
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -108,7 +106,10 @@ function Appointments() {
             </select>
           </div>
           <div className="mt-4">
-            <button type='submit' className="p-2 bg-red-700 text-white rounded w-64 mx-auto block">
+            <button
+              type="submit"
+              className="p-2 bg-red-700 text-white rounded w-64 mx-auto block"
+            >
               Reservar
             </button>
           </div>

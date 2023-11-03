@@ -38,13 +38,11 @@ function Login() {
         }
         const userJSON = JSON.stringify(user);
         localStorage.setItem('user', userJSON);
-
         dispatch(setUser(user))
+        navigate('/')
       } catch (error) {
         console.error("Error fetching user data:", error);
-      }
-  
-      console.log("login ok");
+      }  
       navigate("/");
     }
   });
