@@ -30,15 +30,15 @@ function Details() {
         <i className="fa fa-arrow-left"></i>
       </NavLink>
       {object ? (
-        <div className="w-100vh bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 m-4 p-4">
+        <div className="w-100vh bg-white border border-gray-200 rounded-lg shadow dark:border-gray-700 m-4 p-4">
           <NavLink to="#">
             <img
-              className="rounded-t-lg mx-auto bg-slate-100 m-4 w-100 object-cover rounded"
+              className="rounded-t-lg mx-auto bg-slate-100 m-4 w-[100%] object-cover rounded"
               src={object.image}
               alt={object.name}
             />
           </NavLink>
-          <div className="p-5">
+          <div className="p-5  dark:bg-gray-800 rounded">
             <NavLink to="#">
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 {object.name}
@@ -50,17 +50,16 @@ function Details() {
             <div className="text-3xl font-bold text-white mt-6">
               Especialidades de la Sede
             </div>
-            {object.specialty.map((el) => (
-              <ul className="flex mt-4" key={el.id}>
-                <li className="text-white">
-                  {" "}
+            <ul className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+              {object.specialty.map((el) => (
+                <li className="text-white" key={el.id}>
                   <i className={`${el.icon} ml-2 text-red-700`}></i> {el.name}
                 </li>
-              </ul>
-            ))}
+              ))}
+            </ul>
             <div className="flex justify-around">
               <NavLink
-                to="/hospital"
+                to="/appointment"
                 className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
                 Pedir cita

@@ -7,18 +7,30 @@ export const getAllData = async (endpoint) => {
     const data = await axios.get(`${urlBase}/${endpoint}/`);
     return data;
   } catch (e) {
-    console.log(e);
+    console.error(`Error in request from ⚠ => ${e}`);
   }
 };
 
-export const getOneData = async (endpoint,id) => {
+export const getOneData = async (endpoint, id) => {
   try {
     const data = await axios.get(`${urlBase}/${endpoint}/${id}/`);
     return data;
   } catch (e) {
-    console.log(e);
+    console.error(`Error in request from ⚠ => ${e}`);
   }
 };
 
+export const createItem = async (endpoint, data,token) => {
 
-
+  //you need send the endpoint and data
+  try {
+    const newItem = await axios.post(`${urlBase}/${endpoint}/`, data,{
+      headers:{
+        Authorization:`Bearer ${token}`
+      }
+    });
+    return newItem;
+  } catch (e) {
+    console.error(`Error in request from ⚠ => ${e}`);
+  }
+};
